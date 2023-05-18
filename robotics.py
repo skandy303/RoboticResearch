@@ -1,6 +1,8 @@
 from datetime import datetime
 from RPA.Browser.Selenium import Selenium
 from SeleniumLibrary.errors import ElementNotFound
+from RPA.Browser.Selenium import BrowserNotFoundError
+
 br = Selenium()
 
 
@@ -18,7 +20,11 @@ class Robot:
 
     def open_webpage(self, webpage):
         """Opens a webpage in the default browser"""
-        br.open_available_browser(webpage)
+        try:
+            br.open_available_browser(webpage)
+        except BrowserNotFoundError:
+            print("Unable to open browser, try installing Chrome/Firefox")
+            return -1
         return None
 
     def close_webpage(self):

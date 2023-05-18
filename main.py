@@ -35,7 +35,8 @@ def main():
     and prints their birthdate, deathdate, and the first paragraph of their Wikipedia page.
     """
     introduce_yourself()
-    robot.open_webpage('https://wikipedia.org')
+    if robot.open_webpage('https://wikipedia.org') == -1:
+        return
     info = []
     for scientist in SCIENTISTS:
         print(f"Searching for {scientist}...")
@@ -53,3 +54,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    print("Exiting...")
